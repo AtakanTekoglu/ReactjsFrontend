@@ -3,8 +3,6 @@ import React from 'react'
 const PersonList = (props) => {
         const {list,delPhone} = props
 
-        
-
         return(
             
                     <div key={list.id} className="box">

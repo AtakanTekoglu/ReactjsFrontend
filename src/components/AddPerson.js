@@ -2,7 +2,8 @@ import React from 'react'
 import phoneBookService from '../services/phonebook'
 
 const AddPerson = (props) =>{
-        
+
+        const {userLog,logOut} = props
         let myObj = {
             name : '',
             phone : ''
@@ -12,7 +13,6 @@ const AddPerson = (props) =>{
             const inputName = event.nativeEvent.target.name;
             const inputValue = event.nativeEvent.target.value;
             myObj[inputName] = inputValue;  
-     
         }
 
         const postData = (e) =>{
@@ -33,6 +33,8 @@ const AddPerson = (props) =>{
         
         return(
             <div className="add-person">
+                <h3>{userLog.name} logged-in</h3>
+                <button className="log-out" onClick={logOut}>Log-out</button>
                 <form onSubmit={postData}>
                 <div className="form-group">
                 <label>Name</label>

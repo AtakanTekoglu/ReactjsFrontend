@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef } from 'react'
 import PersonList from './PersonList'
 import AddPerson from './AddPerson'
 import phoneBookService from '../services/phonebook'
@@ -15,7 +15,6 @@ const Container = () => {
 
         const [user, setUser] = useState(null)
 
-        const [loginVisible, setLoginVisible] = useState(false)
 
         const handleLogin = async  (event) => {
             event.preventDefault()
@@ -80,11 +79,7 @@ const Container = () => {
         }
 
         const loginForm =() =>{
-            
-
             return(
-                
-                
                         <Togglable buttonLabel='login'>
                             <LoginForm
                             username = {username}
@@ -97,6 +92,7 @@ const Container = () => {
 
             )
         }
+
         return(
             <div className="disp-container">
                 <div className="person-list">
@@ -109,10 +105,12 @@ const Container = () => {
                  </div>
                  <div className="right-section">
                      {user !== null ? 
-                        <AddPerson 
-                        list={phoneBook} 
-                        userLog={user}
-                        logOut={()=>{handleLogOut()}}/>
+                       <Togglable buttonLabel="new note">
+                            <AddPerson 
+                                list={phoneBook} 
+                                userLog={user}
+                                logOut={()=>{handleLogOut()}}/>
+                       </Togglable>
                         : 
                         //!Login ---------------
                         loginForm()                            
